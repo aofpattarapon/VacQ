@@ -1,39 +1,38 @@
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require('express');
+const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser');
-const connectDB = require("./config/db.js");
+const connectDB = require('./config/db');
 
-//load env vars
-dotenv.config({ path: "./config/config.env" });
+//Load env vars
+dotenv.config({path:'./config/config.env'});
 
-//connect to database
+//Connect to database
 connectDB();
 
 //Route files
-const hospitals = require("./routes/hospitals");
-const auth = require("./routes/auth");
-const { Promise } = require("mongoose");
+const hospitals = require('./routes/hospitals');
+const auth = require('./routes/auth');
+const appointments = require('./routes/appointments');
 
 const app = express();
 
-//add body parser
+//Add body parser
 app.use(express.json());
 
-//Mount routers
-app.use("/api/v1/hospitals", hospitals);
-app.use("/api/v1/auth", auth);
-
+//Cookie parser
 app.use(cookieParser());
 
-const PORT = process.env.PORT || 3000;
-const server = app.listen(
-  PORT,
-  console.log("Server running in", process.env.NODE_ENV, " mode on port", PORT)
-);
+//Mount routers
+app.use('/api/v1/hospitals', hospitals);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/appointments', appointments);
 
-//handle unhandled promise rejection
-process.on("unhandledRejection", (err, promise) => {
-  console.log(`Error ${err.message}`);
-  //close server and exit process
-  server.close(() => process.exit(1));
+const PORT=process.env.PORT || 3000;
+const server = app.listen(PORT, console.log('Server running in ', process.env.NODE_ENV, ' mode on port ', PORT));
+
+//Handle unhandled promise rejections
+process.on('unhandledRejection', (err,promise) => {
+    console.log(`Error: ${err.message}`);
+    //Close server & exit process
+    server.close(() => process.exit(1));
 });
