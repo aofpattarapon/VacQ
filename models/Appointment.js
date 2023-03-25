@@ -13,7 +13,7 @@ const AppointmentSchema = new mongoose.Schema({
     hospital: {
         type: mongoose.Schema.ObjectId,
         ref: 'Hospital',
-        required: true
+        required: true 
     },
     createdAt: {
         type: Date,

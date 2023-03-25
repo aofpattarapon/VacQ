@@ -19,7 +19,7 @@ const HospitalSchema = new mongoose.Schema({
     province: {
         type: String,
         required: [true, 'Please add a province']
-    },
+    }, 
     postalcode: {
         type: String,
         required: [true, 'Please add a postalcode'],

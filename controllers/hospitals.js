@@ -130,7 +130,7 @@ exports.deleteHospital= async (req,res,next)=>{
 };
 
 exports.getVacCenters = (req, res, next) => {
-    VacCenter.getAll((err, data) => {
+    VacCenter.getAll((err, data) => { 
       if (err) {
         res.status(500).send({
           message: err.message ?? "Some error occurred while retrieving Vaccine Centers.",

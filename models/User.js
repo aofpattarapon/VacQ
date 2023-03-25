@@ -45,7 +45,7 @@ UserSchema.methods.getSignedJwtToken = function() {
     });
 }
 
-//Sign JWT and return
+//Sign JWT and return 
 
 UserSchema.methods.matchPassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);

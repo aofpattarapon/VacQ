@@ -15,4 +15,4 @@ router.route('/:id').get(getHospital).put(protect, authorize('admin'), updateHos
 router.use("/:hospitalId/appointments/", appointmentRouter);
 
 
-module.exports=router;
+module.exports=router; 

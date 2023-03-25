@@ -14,4 +14,4 @@ router.route('/:id')
     .put(protect, authorize('admin', 'user'), updateAppointment)
     .delete(protect, authorize('admin', 'user'), deleteAppointment);
 
-module.exports = router;
+module.exports = router; 
